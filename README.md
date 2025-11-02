@@ -52,58 +52,55 @@ Para este proyecto, decidí enfocarme en las bases del desarrollo web, sin frame
 
 ---
 
-## 📂 Estructura de mi Proyecto
+## 📂 Estructura del proyecto
 
-Así es como organicé todos los archivos. Quería mantener una estructura limpia y escalable.
-/metodos-numericos-web/
-|
-|-- 📄 index.html            # La portada principal del sitio
-|-- 📄 introduccion.html     # La página con mi foto y la introducción
-|-- 📄 menu.html             # El menú principal con los 4 módulos
-|-- 📄 README.md            # ¡Este archivo que estás leyendo!
-|-- 📄 .gitignore           # Archivo para ignorar mi foto personal (Base64)
-|
-|-- 📁 /css/
-|   |-- 📄 style.css         # La única hoja de estilos para todo el sitio
-|
-|-- 📁 /js/
-|   |-- 📄 main.js           # Lógica de UI (modo oscuro, sonido, botón salir)
-|   |-- 📄 calculos.js       # ¡TODA LA MATEMÁTICA! (Bisección, Newton, Jacobi, etc.)
-|   |-- 📁 /mathjax/
-|       |-- 📁 /es5/          # La librería MathJax (alojada localmente)
-|           |-- 📄 ... (muchos archivos)
-|
-|-- 📁 /img/
-|   |-- 📄 logo-unam.png
-|   |-- 📄 logo-fes.png
-|   |-- 📄 santiago-gonzalez.jpg (No se sube, está en .gitignore)
-|
-|-- 📁 /audio/
-|   |-- 📄 intro-sound.mp3
-|
-|-- 📁 /metodos/
-    |
-    |-- 📁 /1-ecuaciones-no-lineales/
-    |   |-- 📄 index.html       # Menú e intro del Módulo 1
-    |   |-- 📄 biseccion.html
-    |   |-- 📄 newton.html
-    |   |-- 📄 secante.html
-    |
-    |-- 📁 /2-sistemas-ecuaciones-lineales/
-    |   |-- 📄 index.html       # Menú e intro del Módulo 2
-    |   |-- 📄 gauss-jordan.html
-    |   |-- 📄 jacobi.html
-    |   |-- 📄 gauss-seidel.html
-    |
-    |-- 📁 /3-factorizacion-lu/
-    |   |-- 📄 index.html       # Menú e intro del Módulo 3
-    |   |-- 📄 crout.html
-    |   |-- 📄 cholesky.html
-    |
-    |-- 📁 /4-valores-vectores-propios/
-        |-- 📄 index.html       # Menú e intro del Módulo 4
-        |-- 📄 potencia.html
-        |-- 📄 potencia-inversa.html
+Organización clara y legible del repositorio. Los nombres indican la función de cada archivo o carpeta.
+
+- / (raíz del proyecto)
+    - `index.html` — Portada principal
+    - `introduccion.html` — Página con mi foto y la introducción
+    - `menu.html` — Menú principal con los 4 módulos
+    - `README.md` — Documentación (este archivo)
+    - `.gitignore` — Reglas de ignorado (por ejemplo: `img/`)
+
+- /css/
+    - `style.css` — Hoja de estilos principal
+
+- /js/
+    - `main.js` — Lógica de UI (modo oscuro, sonido, botones)
+    - `calculos.js` — Implementación de los métodos numéricos
+    - `/mathjax/` — MathJax local (si lo incluyes)
+
+- /img/
+    - `logo-unam.png`
+    - `logo-fes.png`
+    - `santiago-gonzalez.jpg` — foto personal (recomendado: no subirla al repositorio)
+
+- /audio/
+    - `intro-sound.mp3`
+
+- /metodos/
+    - /1-ecuaciones-no-lineales/
+        - `index.html`
+        - `biseccion.html`
+        - `newton.html`
+        - `secante.html`
+
+    - /2-sistemas-ecuaciones-lineales/
+        - `index.html`
+        - `gauss-jordan.html`
+        - `jacobi.html`
+        - `gauss-seidel.html`
+
+    - /3-factorizacion-lu/
+        - `index.html`
+        - `crout.html`
+        - `cholesky.html`
+
+    - /4-valores-vectores-propios/
+        - `index.html`
+        - `potencia.html`
+        - `potencia-inversa.html`
 ---
 
 ## 🚀 Cómo Correrlo Localmente
