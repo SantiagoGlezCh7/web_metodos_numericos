@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorización de Crout</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Factorización de Crout (\(A = LU\))</h1>
+        
+        <p>
+            El método de Crout es un algoritmo directo y "compacto" para encontrar la factorización \(LU\). Se le llama compacto porque calcula las entradas de las matrices \(L\) (triangular inferior) y \(U\) (triangular superior) directamente, sin pasar por los pasos intermedios de la eliminación gaussiana.
+        </p>
+        <p>
+            La característica distintiva de Crout es que define la matriz \(U\) como <strong>unitaria</strong>, lo que significa que todos los elementos de su diagonal principal son 1:
+        </p>
+        \[ U_{ii} = 1 \quad \text{para todo } i \]
+        <p>
+            El algoritmo funciona calculando las columnas de \(L\) y las filas de \(U\) de forma alternada. Para una matriz de 3x3, el orden sería:
+        </p>
+        <ol>
+            <li>Calcula la primera columna de \(L\).</li>
+            <li>Calcula la primera fila de \(U\).</li>
+            <li>Calcula la segunda columna de \(L\).</li>
+            <li>Calcula la segunda fila de \(U\).</li>
+            <li>Calcula la tercera columna de \(L\).</li>
+        </ol>
+        <p>
+            Las fórmulas generales que mi código implementa para cada elemento son:
+        </p>
+        \[ l_{ij} = a_{ij} - \sum_{k=1}^{j-1} l_{ik}u_{kj} \quad (\text{para } i \ge j) \]
+        \[ u_{ij} = \frac{1}{l_{ii}} \left( a_{ij} - \sum_{k=1}^{i-1} l_{ik}u_{kj} \right) \quad (\text{para } i < j) \]
+        
+        <p>
+            Una vez que el código calcula \(L\) y \(U\), resuelve el sistema \(Ax=b\) en los dos pasos rápidos que ya conocemos:
+        </p>
+        <ol>
+            <li><strong>Sustitución hacia adelante:</strong> Resuelve \(Ly = b\) para encontrar el vector \(y\).</li>
+            <li><strong>Sustitución hacia atrás:</strong> Resuelve \(Ux = y\) para encontrar la solución final \(x\).</li>
+        </ol>
+        <blockquote>
+            Referencia: Burden, R. L., & Faires, J. D. (2011). *Numerical Analysis*. Brooks/Cole.
+        </blockquote>
+
+        <div class="metodo-container">
+            <p class="problema-titulo">Problema 1: Sistema 3x3</p>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ \left[ \begin{array}{ccc|c}
+                     1 &  1 &  1 & 2 \\
+                     2 & -1 &  3 & -3 \\
+                     3 &  2 & -1 & 8
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-crout-1">
+                <button type="submit">Resolver Problema 1</button>
+            </form>
+            <div id="resultado-crout-1"></div>
+        </div>
+        
+        <div class="metodo-container">
+            <p class="problema-titulo">Problema 2: Sistema 3x3</p>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ \left[ \begin{array}{ccc|c}
+                     4 &  1 & -1 & 4 \\
+                     1 &  3 &  1 & 5 \\
+                     2 & -1 &  5 & 6
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-crout-2">
+                <button type="submit">Resolver Problema 2</button>
+            </form>
+            <div id="resultado-crout-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

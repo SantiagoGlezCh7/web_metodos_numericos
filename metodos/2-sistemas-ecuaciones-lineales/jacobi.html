@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Jacobi</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+  
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Método de Jacobi</h1>
+        <p>
+            El método de Jacobi es un algoritmo iterativo que resuelve sistemas \(Ax = b\). Su idea central es la <strong>actualización simultánea</strong>.
+        </p>
+        <p>
+            Para cada ecuación \(i\) del sistema, despejamos la variable de la diagonal \(x_i\). Esto nos da una fórmula para calcular el "nuevo" valor de \(x_i\) basándonos en los "viejos" valores de las otras variables.
+        </p>
+        <p>
+            Lo crucial de Jacobi es que, para calcular el vector completo de la siguiente iteración, \(x^{(k+1)}\), utiliza <strong>exclusivamente</strong> los valores del vector de la iteración anterior, \(x^{(k)}\). No usa los valores "nuevos" a medida que se van calculando en la misma iteración (esa es la diferencia con Gauss-Seidel).
+        </p>
+        
+        <h4>Fórmula de Jacobi:</h4>
+        \[x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \right)\]
+        
+        <p>
+            El método solo tiene <strong>garantía de converger</strong> si la matriz \(A\) es estrictamente diagonalmente dominante. Esto significa que, para cada fila, el valor absoluto del elemento de la diagonal es mayor que la suma de los valores absolutos de los otros elementos en esa fila.
+        </p>
+        <blockquote>
+            Referencia: Burden, R. L., & Faires, J. D. (2011). *Numerical Analysis*. Brooks/Cole.
+        </blockquote>
+
+        <div class="metodo-container">
+            <h3>Problema 1: Sistema 3x3 (Diagonal Dominante)</h3>
+            <pre>
+
+ 10x₁ -  x₂ + 2x₃ = 6
+ -x₁ + 11x₂ -  x₃ = 25
+ 2x₁ -  x₂ + 10x₃ = -11
+            </pre>
+            <form id="form-jacobi-1">
+                <label>\(x_0\): 
+                    <input type="number" id="j1_x1" value="0" step="any">
+                    <input type="number" id="j1_x2" value="0" step="any">
+                    <input type="number" id="j1_x3" value="0" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="j1_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Resolver Problema 1</button>
+            </form>
+            <div id="resultado-jacobi-1"></div>
+        </div>
+        
+        <div class="metodo-container">
+            <h3>Problema 2: Sistema 3x3 (Diagonal Dominante)</h3>
+            <pre>
+ 4x₁ +  x₂ -  x₃ = 3
+ 2x₁ + 7x₂ +  x₃ = 19
+  x₁ - 3x₂ + 12x₃ = 31
+            </pre>
+            <form id="form-jacobi-2">
+                <label>\(x_0\): 
+                    <input type="number" id="j2_x1" value="0" step="any">
+                    <input type="number" id="j2_x2" value="0" step="any">
+                    <input type="number" id="j2_x3" value="0" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="j2_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Resolver Problema 2</button>
+            </form>
+            <div id="resultado-jacobi-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

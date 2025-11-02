@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores y Vectores Propios</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+
+    <main class="container">
+        <a href="../../menu.html" class="btn-regresar">&larr; Regresar al Menú Principal</a>
+
+        <h1>4. Valores y Vectores Propios</h1>
+        
+        <p>
+            En mi opinión, este es uno de los conceptos más poderosos del álgebra lineal. La idea es encontrar los "ejes" fundamentales de una matriz.
+        </p>
+        <p>
+            Un <strong>vector propio</strong> (\(v\)) es un vector (distinto de cero) que, cuando es multiplicado por la matriz \(A\), no cambia su dirección, solo su magnitud. El <strong>valor propio</strong> (\(\lambda\)) es ese factor de escala.
+        </p>
+        
+        <h4>La Ecuación Fundamental:</h4>
+        \[Av = \lambda v\]
+        
+        <p>
+            Para mí, la forma más fácil de entenderlos es pensar en un objeto girando. El <strong>vector propio</strong> sería su eje de rotación (un vector que, aunque todo gire, él solo apunta en la misma dirección) y el <strong>valor propio</strong> sería la velocidad de ese giro.
+        </p>
+        <p>
+            Aplicaciones como el algoritmo PageRank de Google (que ordena sitios web), el PCA (Principal Component Analysis) en ciencia de datos (para reducir dimensiones) y el análisis de vibraciones en ingeniería.
+        </p>
+        
+        <h4>¿Cómo los encontramos?</h4>
+        <p>
+            Analíticamente, para matrices pequeñas, reescribimos la ecuación como \((A - \lambda I)v = 0\). Para que existan soluciones \(v\) no nulas, la matriz \((A - \lambda I)\) debe ser singular, lo que significa que su determinante debe ser cero:
+        </p>
+        \[\det(A - \lambda I) = 0\]
+        <p>
+            Resolver esto nos da la "ecuación característica", pero para matrices grandes (como las del mundo real), calcular un determinante es computacionalmente imposible.
+        </p>
+        
+        <hr>
+        <h4>Pasos de la Solución Numérica (Iterativa)</h4>
+        <p>
+            Aquí es donde entran los métodos numéricos que implementé en mi proyecto. En lugar de resolver el determinante, "aproximamos" los valores propios.
+        </p>
+        <ol>
+            <li>
+                <strong>Método de la Potencia (para el valor propio dominante):</strong>
+                Este método encuentra el valor propio \(\lambda_1\) que es el más grande en magnitud.
+                <ul>
+                    <li><strong>Paso 1:</strong> Empezamos con un vector inicial \(x^{(0)}\) (usualmente un vector de unos).</li>
+                    <li><strong>Paso 2 (Iterar):</strong> Calculamos un nuevo vector \(y^{(k+1)} = A x^{(k)}\).</li>
+                    <li><strong>Paso 3 (Aproximar):</strong> El elemento más grande de \(y^{(k+1)}\) es nuestra nueva aproximación del valor propio \(\lambda\).</li>
+                    <li><strong>Paso 4 (Normalizar):</strong> Dividimos \(y^{(k+1)}\) entre esa \(\lambda\) para obtener el nuevo \(x^{(k+1)}\) y repetimos.</li>
+                    <li><strong>Paso 5 (Parar):</strong> El proceso se detiene cuando el error (la diferencia entre la \(\lambda\) actual y la anterior) es menor que nuestra tolerancia.</li>
+                </ul>
+            </li>
+            <li style="margin-top:1rem;">
+                <strong>Método de la Potencia Inversa (para el valor propio más pequeño):</strong>
+                Este método es idéntico, pero se lo aplicamos a la matriz inversa \(A^{-1}\). El valor propio dominante de \(A^{-1}\) es el recíproco (\(1/\lambda\)) del valor propio más pequeño de \(A\).
+                <ul>
+                    <li><strong>Paso Clave:</strong> En lugar de calcular \(y = A^{-1} x\), lo cual es costoso, reescribimos la ecuación como \(Ay = x\).</li>
+                    <li>¡Esto es un sistema de ecuaciones lineales! Y como ya tengo mi código de <strong>Factorización LU</strong> (que es súper rápido para resolver sistemas repetidos), lo reutilizo aquí para resolver \(Ay = x\) en cada iteración.</li>
+                </ul>
+            </li>
+        </ol>
+        <blockquote>
+            Referencia: Lay, D. C. (2012). *Linear Algebra and Its Applications* (4ª ed.). Pearson.
+        </blockquote>
+
+        <hr>
+
+        <h2>Selecciona un método:</h2>
+        
+        <a href="potencia.html" class="btn-principal" target="_blank">Método de la Potencia</a>
+        <a href="potencia-inversa.html" class="btn-principal" target="_blank">Método de la Potencia Inversa</a>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

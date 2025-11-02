@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Gauss-Seidel</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Método de Gauss-Seidel</h1>
+        
+        <p>
+            El método de Gauss-Seidel es una <strong>mejora directa del método de Jacobi</strong>. Al igual que Jacobi, es un método iterativo que resuelve sistemas \(Ax = b\), pero tiene una diferencia fundamental que acelera la convergencia.
+        </p>
+        <p>
+            La clave es que, al calcular el nuevo componente \(x_i^{(k+1)}\), utiliza <strong>inmediatamente</strong> los valores que ya se calcularon en esa misma iteración (es decir, \(x_j^{(k+1)}\) para \(j < i\)).
+        </p>
+        <p>
+            En lugar de esperar a que termine la iteración completa (como Jacobi), Gauss-Seidel siempre usa la <strong>información más reciente disponible</strong>. Esto casi siempre hace que el método converja mucho más rápido.
+        </p>
+        
+        <h4>Fórmula de Gauss-Seidel:</h4>
+        \[x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j < i} a_{ij} x_j^{(k+1)} - \sum_{j > i} a_{ij} x_j^{(k)} \right)\]
+        
+        <p>
+            Observa en la fórmula cómo la suma se divide en dos:
+        </p>
+        <ul>
+            <li>\(\sum_{j < i} \dots\): Usa los valores <strong>nuevos</strong> (de la iteración \(k+1\)) que ya se calcularon.</li>
+            <li>\(\sum_{j > i} \dots\): Usa los valores <strong>viejos</strong> (de la iteración \(k\)) que aún no se actualizan.</li>
+        </ul>
+        <blockquote>
+            Referencia: Chapra, S. C., & Canale, R. P. (2010). *Métodos Numéricos para Ingenieros* (6ª ed.). McGraw-Hill.
+        </blockquote>
+
+        <div class="metodo-container">
+            <h3>Problema 1: Sistema 3x3</h3>
+            <pre>
+ 10x₁ -  x₂ + 2x₃ = 6
+ -x₁ + 11x₂ -  x₃ = 25
+ 2x₁ -  x₂ + 10x₃ = -11
+            </pre>
+            <form id="form-gauss-seidel-1">
+                <label>\(x_0\): 
+                    <input type="number" id="gs1_x1" value="0" step="any">
+                    <input type="number" id="gs1_x2" value="0" step="any">
+                    <input type="number" id="gs1_x3" value="0" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="gs1_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Resolver Problema 1</button>
+            </form>
+            <div id="resultado-gauss-seidel-1"></div>
+        </div>
+        
+        <div class="metodo-container">
+            <h3>Problema 2: Sistema 3x3</h3>
+            <pre>
+ 4x₁ +  x₂ -  x₃ = 3
+ 2x₁ + 7x₂ +  x₃ = 19
+  x₁ - 3x₂ + 12x₃ = 31
+            </pre>
+            <form id="form-gauss-seidel-2">
+                <label>\(x_0\): 
+                    <input type="number" id="gs2_x1" value="0" step="any">
+                    <input type="number" id="gs2_x2" value="0" step="any">
+                    <input type="number" id="gs2_x3" value="0" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="gs2_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Resolver Problema 2</button>
+            </form>
+            <div id="resultado-gauss-seidel-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

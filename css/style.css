@@ -1,0 +1,250 @@
+/* --- Variables de Color (CSS Moderno) --- */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #222222;
+    --primary-color: #005A9C; /* Azul UNAM */
+    --secondary-color: #B8860B; /* Oro UNAM */
+    --card-bg: #f4f4f4;
+    --border-color: #ddd;
+}
+
+/* --- Tema Oscuro --- */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #eeeeee;
+    --card-bg: #2c2c2c;
+    --border-color: #444;
+}
+
+/* --- Estilos Globales --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    
+    /* --- TUS NUEVAS LÍNEAS DE FONDO --- */
+    background: -webkit-linear-gradient(90deg, #054c76,#0c192a,#471c3a);
+    background: linear-gradient(90deg, #054c76,#0c192a,#471c3a);
+    background-attachment: fixed; /* <-- Importante: fija el degradado */
+    /* ---------------------------------- */
+
+    color: #ffffff;
+    transition: background-color 0.3s, color 0.3s; /* La transición de fondo ya no aplica */
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+}
+
+/* --- Portada (index.html) --- */
+.portada-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: var(--card-bg);
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.portada-header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.portada-header img {
+    max-height: 80px; /* Altura máxima */
+    width: auto;      /* Ancho automático para mantener proporción */
+    object-fit: contain; /* Asegura que la imagen se vea bien */
+}
+
+.portada-main {
+    text-align: center;
+    flex-grow: 1; /* Empuja el footer hacia abajo */
+}
+
+.portada-main h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+.info-proyecto {
+    margin: 2rem 0;
+    font-size: 1.1rem;
+}
+
+/* --- Botones --- */
+.btn-principal {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-principal:hover {
+    background-color: #004170;
+    transform: translateY(-2px);
+}
+
+.btn-regresar {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn-regresar:hover {
+    background-color: #a0740a;
+}
+
+/* --- Footer (Modo Oscuro y Sonido) --- */
+.site-footer {
+    display: flex; /* <-- AÑADIDO */
+    justify-content: space-between; /* <-- AÑADIDO */
+    align-items: center;
+    text-align: right;
+    padding: 1rem 2rem;
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.8rem
+}
+
+.site-footer button {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 0.5rem;
+}
+
+/* --- Estilos para las Páginas de Métodos --- */
+.metodo-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.metodo-container input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.metodo-container button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+.metodo-container button:hover {
+    background-color: #004170;
+}
+
+/* --- Tablas de Resultados --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.6rem;
+    text-align: center;
+}
+
+thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--bg-color);
+}
+tbody tr:nth-child(odd) {
+    background-color: var(--card-bg);
+}
+
+
+
+/* --- Estilos para la Página de Despedida --- */
+main.despedida-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1; /* Ocupa todo el espacio disponible */
+    color: white; /* Asegura que el texto sea blanco */
+}
+
+main.despedida-container h2 {
+    font-size: 2.5rem;
+}
+
+main.despedida-container p {
+    font-size: 1.2rem;
+}
+
+/* --- Estilos para la sección de Introducción con foto --- */
+.intro-content {
+    display: flex;          /* Habilita Flexbox */
+    align-items: flex-start; /* Alinea los elementos al inicio (arriba) */
+    gap: 20px;              /* Espacio entre la imagen y el texto */
+    margin-bottom: 2rem;    /* Espacio debajo de esta sección */
+    flex-wrap: wrap;        /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+.intro-image {
+    width: 200px;           /* Ancho fijo para la imagen */
+    height: auto;           /* Altura automática para mantener proporción */
+    border-radius: 8px;     /* Bordes ligeramente redondeados para la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para que destaque */
+    object-fit: cover;      /* Asegura que la imagen cubra el espacio sin distorsión */
+    flex-shrink: 0;         /* Evita que la imagen se encoja en pantallas pequeñas */
+}
+
+/* Para pantallas más pequeñas, la imagen se colocará arriba del texto */
+@media (max-width: 768px) {
+    .intro-content {
+        flex-direction: column; /* Apila la imagen y el texto */
+        align-items: center;    /* Centra la imagen y el texto apilados */
+    }
+    .intro-image {
+        margin-bottom: 1rem; /* Espacio debajo de la imagen cuando está arriba */
+        width: 150px; /* Un poco más pequeña en móviles */
+    }
+}

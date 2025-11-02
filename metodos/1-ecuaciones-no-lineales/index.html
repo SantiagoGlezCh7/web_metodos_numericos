@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecuaciones No Lineales</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+
+    <main class="container">
+        <a href="../../menu.html" class="btn-regresar">&larr; Regresar al Menú Principal</a>
+
+        <h1>1. Ecuaciones No Lineales</h1>
+        
+        <p style="font-size: 1.1rem;">
+            En esta sección, me voy a enfocar en uno de los temas que me parecen más fascinantes: la solución de <strong>ecuaciones no lineales</strong> (o trascendentes).
+        </p>
+        <p>
+            Como estudiante de Matemáticas Aplicadas y Computación, me he dado cuenta de que el álgebra simple no es suficiente. El objetivo aquí es encontrar las "raíces" de una función, es decir, los valores \(x\) para los cuales \(f(x) = 0\).
+        </p>
+        <p>
+            Estos métodos son fundamentales cuando no podemos "despejar" \(x\) directamente. Un ejemplo clásico es la ecuación \(e^x - \cos(x) = 0\). Es imposible aislar la \(x\) usando métodos algebraicos tradicionales. Aquí es donde entran los métodos numéricos.
+        </p>
+        <p>
+            He aprendido que estos métodos son casi siempre <strong>iterativos</strong>: partimos de una suposición inicial y la vamos "refinando" en cada paso (o iteración) hasta que nos acercamos tanto a la solución que el error es lo suficientemente pequeño (menor que una tolerancia \(\epsilon\) que definimos).
+        </p>
+        <p>
+            En esta sección de mi proyecto, he implementado dos tipos principales de métodos:
+        </p>
+        <ul>
+            <li>
+                <strong>Métodos Cerrados (o de Intervalo):</strong> Como el <strong>Método de Bisección</strong>. Estos métodos necesitan un intervalo inicial \([a, b]\) donde yo sé que la raíz existe (gracias al Teorema de Bolzano, que requiere \(f(a) \cdot f(b) < 0\)). Su gran ventaja es que <strong>siempre convergen</strong> a la raíz, aunque suelen ser un poco lentos.
+            </li>
+            <li>
+                <strong>Métodos Abiertos:</strong> Como el <strong>Método de Newton-Raphson</strong> y el <strong>Método de la Secante</strong>. Estos métodos no necesitan un intervalo, solo uno o dos puntos iniciales (\(p_0\)). Su poder es que son increíblemente rápidos (convergencia cuadrática o superlineal), pero tienen una desventaja: <strong>no hay garantía de que converjan</strong>. Si el punto inicial es malo, ¡pueden "dispararse" al infinito!
+            </li>
+        </ul>
+        <p>
+            Abajo puedes explorar cómo funciona cada uno de estos algoritmos en la práctica.
+        </p>
+        <blockquote>
+            Referencia: Chapra, S. C., & Canale, R. P. (2010). *Métodos Numéricos para Ingenieros* (6ª ed.). McGraw-Hill.
+        </blockquote>
+
+        <hr>
+        <h2>Selecciona un método:</h2>
+        
+        <a href="biseccion.html" class="btn-principal" target="_blank">Método de Bisección</a>
+        <a href="newton.html" class="btn-principal" target="_blank">Método de Newton-Raphson</a>
+        <a href="secante.html" class="btn-principal" target="_blank">Método de la Secante</a>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

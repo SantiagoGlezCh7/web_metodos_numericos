@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de la Potencia</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Método de la Potencia</h1>
+        
+        <p>
+            Este método iterativo es la forma más simple de encontrar el <strong>valor propio dominante</strong> (el de mayor magnitud, \(\lambda_1\)) y su <strong>vector propio asociado</strong> (\(v_1\)).
+        </p>
+        <p>
+            La idea central es sorprendentemente simple: ¿qué pasa si multiplicamos un vector \(x^{(0)}\) por una matriz \(A\) repetidamente?
+        </p>
+        \[ A(A(A(\dots(Ax^{(0)})))) = A^k x^{(0)} \]
+        <p>
+            La teoría nos dice que cualquier vector \(x^{(0)}\) se puede escribir como una combinación de todos los vectores propios de la matriz. Al multiplicar por \(A^k\), el término asociado al valor propio más grande (\(\lambda_1^k\)) crecerá mucho más rápido que todos los demás.
+        </p>
+        <p>
+            Eventualmente, después de muchas iteraciones, el vector resultante \(A^k x^{(0)}\) apuntará casi exactamente en la misma dirección que el vector propio dominante \(v_1\).
+        </p>
+        <p>
+            El problema es que el vector \(A^k x^{(0)}\) se hace gigante (o diminuto). Para evitar esto, en cada paso "normalizamos" el vector: lo escalamos para que su componente más grande sea 1. El factor de escala que usamos en cada paso es, precisamente, ¡nuestra aproximación al valor propio dominante!
+        </p>
+        
+        <hr>
+        <h4>Pasos de la Solución del Ejercicio</h4>
+        <p>
+            Mi código implementa este algoritmo de "normalización en cada paso". Para una tolerancia \(\epsilon\) dada:
+        </p>
+        <ol>
+            <li><strong>Paso 1 (Inicio):</strong> Empezamos con un vector inicial \(x^{(0)}\), que para estos problemas yo defino como un vector de unos: \([1, 1, 1]^T\).</li>
+            <li><strong>Paso 2 (Iterar):</strong> Calculamos el siguiente vector "sin escalar":
+                \[y^{(k+1)} = A x^{(k)}\]
+            </li>
+            <li><strong>Paso 3 (Encontrar \(\mu\)):</strong> Buscamos el valor absoluto más grande dentro del nuevo vector \(y^{(k+1)}\). Este valor es nuestra nueva aproximación del valor propio dominante. Lo llamamos \(\mu\):
+                \[\mu_{k+1} = ||y^{(k+1)}||_{\infty}\]
+            </li>
+            <li><strong>Paso 4 (Normalizar):</strong> Creamos nuestro siguiente vector \(x^{(k+1)}\) dividiendo \(y^{(k+1)}\) por nuestra \(\mu\). Esto "reinicia" el vector para la siguiente iteración, haciendo que su componente más grande sea 1.
+                \[x^{(k+1)} = \frac{y^{(k+1)}}{\mu_{k+1}}\]
+            </li>
+            <li><strong>Paso 5 (Calcular Error y Parar):</strong> Calculamos el error absoluto \(|\mu_{k+1} - \mu_k|\). Si este error es menor que la tolerancia \(\epsilon\), nos detenemos. El valor \(\mu_{k+1}\) es nuestro valor propio, y \(x^{(k+1)}\) es su vector propio asociado. Si no, volvemos al Paso 2.</li>
+        </ol>
+        
+        <h4>¿Qué se debe tener en cuenta?</h4>
+        <ul>
+            <li>Este método solo funciona si existe <strong>un único</strong> valor propio dominante (ej. si \(\lambda_1=5\) y \(\lambda_2=-5\), no converge).</li>
+            <li>La velocidad de convergencia depende de qué tan dominante sea \(\lambda_1\). Si \(|\lambda_2|\) es muy cercano a \(|\lambda_1|\), la convergencia será muy lenta.</li>
+        </ul>
+        <blockquote>
+            Referencia: Burden, R. L., & Faires, J. D. (2011). *Numerical Analysis*. Brooks/Cole.
+        </blockquote>
+
+        <div class="metodo-container">
+            <h3>Problema 1: Matriz 3x3</h3>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ A = \left[ \begin{array}{ccc}
+                     1 & 2 & 0 \\
+                     2 & 1 & 0 \\
+                     0 & 0 & -1
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-potencia-1">
+                <label>$x_0$: 
+                    <input type="number" id="p1_x1" value="1" step="any">
+                    <input type="number" id="p1_x2" value="1" step="any">
+                    <input type="number" id="p1_x3" value="1" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="p1_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 1</button>
+            </form>
+            <div id="resultado-potencia-1"></div>
+        </div>
+        
+        <div class="metodo-container">
+            <h3>Problema 2: Matriz 3x3</h3>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ A = \left[ \begin{array}{ccc}
+                     4 & 1 & 0 \\
+                     1 & 20 & 1 \\
+                     0 & 1 & 4
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-potencia-2">
+                <label>$x_0$: 
+                    <input type="number" id="p2_x1" value="1" step="any">
+                    <input type="number" id="p2_x2" value="1" step="any">
+                    <input type="number" id="p2_x3" value="1" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="p2_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 2</button>
+            </form>
+            <div id="resultado-potencia-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

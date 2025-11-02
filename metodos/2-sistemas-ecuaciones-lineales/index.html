@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas de Ecuaciones Lineales</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+
+    <main class="container">
+        <a href="../../menu.html" class="btn-regresar">&larr; Regresar al Menú Principal</a>
+
+        <h1>2. Sistemas de Ecuaciones Lineales</h1>
+        
+        <p>
+            Resolver un sistema de ecuaciones lineales \(Ax = b\) consiste en encontrar el vector \(x\) que satisface simultáneamente todas las ecuaciones. Estos métodos se dividen en dos categorías:
+        </p>
+        <ul>
+            <li><strong>Métodos Directos (ej. Gauss-Jordan):</strong> Encuentran la solución exacta en un número finito de pasos.</li>
+            <li><strong>Métodos Iterativos (ej. Jacobi, Gauss-Seidel):</strong> Comienzan con una aproximación \(x_0\) y generan una secuencia de vectores \(x_k\) que converge a la solución.</li>
+        </ul>
+        <blockquote>
+            Referencia: Kincaid, D., & Cheney, W. (2002). *Numerical Analysis: Mathematics of Scientific Computing*. Brooks/Cole.
+        </blockquote>
+
+        <hr>
+
+        <h2>Selecciona un método:</h2>
+        
+        <a href="gauss-jordan.html" class="btn-principal" target="_blank">Método de Gauss-Jordan</a>
+        <a href="jacobi.html" class="btn-principal" target="_blank">Método de Jacobi</a>
+        <a href="gauss-seidel.html" class="btn-principal" target="_blank">Método de Gauss-Seidel</a>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    </body>
+</html>

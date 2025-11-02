@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de la Potencia Inversa</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Método de la Potencia Inversa</h1>
+        
+        <p>
+            Este método es una aplicación ingeniosa del Método de la Potencia. Su objetivo es encontrar el valor propio de <strong>menor magnitud</strong> (el más cercano a 0).
+        </p>
+        <p>
+            La teoría es la siguiente: si una matriz \(A\) tiene valores propios \(\lambda_1, \lambda_2, \dots, \lambda_n\), su matriz inversa \(A^{-1}\) tendrá valores propios \(1/\lambda_1, 1/\lambda_2, \dots, 1/\lambda_n\).
+        </p>
+        <p>
+            Basado en esto, el valor propio <strong>más pequeño</strong> de \(A\) (ej. \(\lambda_n\)) corresponde al valor propio <strong>más grande</strong> (dominante) de \(A^{-1}\) (es decir, \(1/\lambda_n\)).
+        </p>
+        <p>
+            ¡Así que mi estrategia es usar el <strong>Método de la Potencia</strong> que ya conocemos, pero sobre la matriz \(A^{-1}\)!
+        </p>
+        <p>
+            El algoritmo del Método de la Potencia para \(A^{-1}\) sería:
+        </p>
+        \[y^{(k+1)} = A^{-1} x^{(k)}\]
+        
+        <hr>
+        <h4>Pasos de la Solución del Ejercicio (El Truco)</h4>
+        <p>
+            Aquí es donde, como programador, tuve que tomar una decisión. Calcular \(A^{-1}\) es un proceso muy lento, costoso e numéricamente inestable. ¡Nunca queremos calcular una inversa si podemos evitarlo!
+        </p>
+        <p>
+            Así que, en lugar de calcular \(y^{(k+1)} = A^{-1} x^{(k)}\), reescribí la ecuación multiplicando por \(A\) en ambos lados:
+        </p>
+        \[A y^{(k+1)} = A (A^{-1} x^{(k)}) \implies A y^{(k+1)} = x^{(k)}\]
+        <p>
+            ¡Esto es un sistema de ecuaciones lineales \(Ax = b\)! Donde nuestra incógnita es \(y^{(k+1)}\) y nuestro vector \(b\) es el vector \(x^{(k)}\) de la iteración anterior.
+        </p>
+        <p>
+            Este es el flujo de mi código:
+        </p>
+        <ol>
+            <li><strong>Paso 1 (Inicio):</strong> Partimos de un vector inicial \(x^{(0)}\) (ej. \([1, 1, 1]^T\)).</li>
+            <li><strong>Paso 2 (Preparación):</strong> Calculo la factorización \(A = LU\) <strong>una sola vez</strong>.</li>
+            <li><strong>Paso 3 (Iterar):</strong> Para encontrar \(y^{(k+1)}\), resuelvo el sistema \(A y^{(k+1)} = x^{(k)}\) usando mi factorización:
+                <ul>
+                    <li>a. Resuelvo \(Lz = x^{(k)}\) para \(z\) (sustitución hacia adelante).</li>
+                    <li>b. Resuelvo \(U y^{(k+1)} = z\) para \(y^{(k+1)}\) (sustitución hacia atrás).</li>
+                </ul>
+            </li>
+            <li><strong>Paso 4 (Encontrar \(\mu\)):</strong> Busco el valor más grande de \(y^{(k+1)}\). Este \(\mu\) es el valor propio dominante de \(A^{-1}\).</li>
+            <li><strong>Paso 5 (Normalizar):</strong> Normalizo el vector para la siguiente iteración: \(x^{(k+1)} = y^{(k+1)} / \mu\).</li>
+            <li><strong>Paso 6 (Encontrar \(\lambda\)):</strong> El valor propio de \(A\) que busco es el recíproco: \(\lambda = 1 / \mu\).</li>
+            <li><strong>Paso 7 (Parar):</strong> Calculo el error \(|\lambda_k - \lambda_{k-1}|\) y me detengo si es menor que la tolerancia \(\epsilon\).</li>
+        </ol>
+        
+        <blockquote>
+            Referencia MIT: Massachusetts Institute of Technology. (2010). *18.335J / 6.337J Introduction to Numerical Methods*. MIT OpenCourseware. (Ver "Lecture 12: Power and inverse iteration".)
+        </blockquote>
+        <hr>
+
+        <div class="metodo-container">
+            <h3>Problema 1: Matriz 3x3</h3>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ A = \left[ \begin{array}{ccc}
+                     1 & 2 & 0 \\
+                     2 & 1 & 0 \\
+                     0 & 0 & -1
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-potencia-inversa-1">
+                <label>\(x_0\):
+                    <input type="number" id="pi1_x1" value="1" step="any">
+                    <input type="number" id="pi1_x2" value="1" step="any">
+                    <input type="number" id="pi1_x3" value="1" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="pi1_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 1</button>
+            </form>
+            <div id="resultado-potencia-inversa-1"></div>
+        </div>
+        
+        <div class="metodo-container">
+            <h3>Problema 2: Matriz 3x3</h3>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ A = \left[ \begin{array}{ccc}
+                     4 & 1 & 0 \\
+                     1 & 20 & 1 \\
+                     0 & 1 & 4
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-potencia-inversa-2">
+                <label>\(x_0\):
+                    <input type="number" id="pi2_x1" value="1" step="any">
+                    <input type="number" id="pi2_x2" value="1" step="any">
+                    <input type="number" id="pi2_x3" value="1" step="any">
+                </label>
+                <label>Tolerancia: <input type="number" id="pi2_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 2</button>
+            </form>
+            <div id="resultado-potencia-inversa-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

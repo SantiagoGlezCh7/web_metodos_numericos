@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Bisección</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Método de Bisección</h1>
+        <p>
+            Es un método cerrado que requiere un intervalo inicial \([a, b]\) donde la función cambia de signo 
+            (es decir, \(f(a) \cdot f(b) < 0\)). El método divide el intervalo a la mitad repetidamente, 
+            convergiendo lentamente pero de forma segura a la raíz.
+         
+        </p>
+        <blockquote>
+            Referencia: Burden, R. L., & Faires, J. D. (2011). *Numerical Analysis*. Brooks/Cole.
+        </blockquote>
+
+        <div class="metodo-container">
+            <h3>Problema 1: \(f(x) = x^{3} + 4x^{2} - 10\)</h3>
+
+            <p>Encuentre la raíz en el intervalo [1, 2] con una tolerancia de 0.0001</p>
+            
+            <form id="form-biseccion-1">
+                <label>Intervalo a: <input type="number" id="b1_a" value="1" step="any" required></label>
+                <label>Intervalo b: <input type="number" id="b1_b" value="2" step="any" required></label>
+                <label>Tolerancia: <input type_num="number" id="b1_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 1</button>
+            </form>
+            <div id="resultado-biseccion-1"></div>
+        </div>
+
+        <div class="metodo-container">
+            
+            <h3>Problema 2: \(f(x) = e^{-x} - x\)</h3>
+            <p>Encuentre la raíz en el intervalo [0, 1] con una tolerancia de 0.0001</p>
+            
+            <form id="form-biseccion-2">
+                <label>Intervalo a: <input type="number" id="b2_a" value="0" step="any" required></label>
+                <label>Intervalo b: <input type="number" id="b2_b" value="1" step="any" required></label>
+                <label>Tolerancia: <input type="number" id="b2_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 2</button>
+            </form>
+            <div id="resultado-biseccion-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

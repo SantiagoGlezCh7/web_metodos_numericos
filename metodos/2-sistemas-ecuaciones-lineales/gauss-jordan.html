@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Gauss-Jordan</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+  
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        <h1>Método de Eliminación de Gauss-Jordan</h1>
+        
+        <p>
+            Es un método <strong>directo</strong> (no iterativo) que resuelve sistemas de la forma \(Ax = b\). Su objetivo es transformar la <strong>matriz aumentada</strong> \([A | b]\) en la forma escalonada reducida por filas, que se ve así: \([I | x]\).
+        </p>
+        <p>
+            ¿Cómo lo hace? Utiliza <strong>operaciones elementales de fila</strong> para manipular la matriz:
+        </p>
+        <ol>
+            <li>Intercambiar dos filas.</li>
+            <li>Multiplicar una fila por un escalar (un número) no nulo.</li>
+            <li>Sumar un múltiplo de una fila a otra fila.</li>
+        </ol>
+        <p>
+            El objetivo de estas operaciones es procesar la matriz columna por columna (un proceso llamado <strong>pivoteo</strong>) para lograr dos cosas:
+        </p>
+        <ul>
+            <li>Que la diagonal principal de la matriz \(A\) se convierta en "1"s.</li>
+            <li>Que todos los demás elementos, tanto *arriba* como *debajo* de la diagonal, se conviertan en "0"s.</li>
+        </ul>
+        <p>
+            Al final de este proceso, la parte izquierda de la matriz se ha convertido en la <strong>matriz identidad</strong> (\(I\)), y lo que queda "mágicamente" en el lado derecho (donde estaba el vector \(b\)) es el <strong>vector solución</strong> (\(x\)).
+        </p>
+        <blockquote>
+            Referencia: Lay, D. C. (2012). *Linear Algebra and Its Applications* (4ª ed.). Pearson.
+        </blockquote>
+
+        <div class="metodo-container">
+            <h3>Problema 1: Sistema 3x3</h3>
+            <pre>
+ 2x₁ +  x₂ -  x₃ = 8
+-3x₁ -  x₂ + 2x₃ = -11
+-2x₁ +  x₂ + 2x₃ = -3
+            </pre>
+            <form id="form-gauss-jordan-1">
+                <button type="submit">Resolver Problema 1</button>
+            </form>
+            <div id="resultado-gauss-jordan-1"></div>
+        </div>
+        
+        <div class="metodo-container">
+            <h3>Problema 2: Sistema 3x3</h3>
+            <pre>
+ x₁ +  x₂ + 2x₃ = 9
+2x₁ + 4x₂ - 3x₃ = 1
+3x₁ + 6x₂ - 5x₃ = 0
+            </pre>
+            <form id="form-gauss-jordan-2">
+                <button type="submit">Resolver Problema 2</button>
+            </form>
+            <div id="resultado-gauss-jordan-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorización LU</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+
+    <main class="container">
+        <a href="../../menu.html" class="btn-regresar">&larr; Regresar al Menú Principal</a>
+
+        <h1>3. Factorización LU</h1>
+        
+        <p>
+            La factorización (o descomposición) \(LU\) es un método directo fundamental en el álgebra lineal numérica para resolver sistemas \(Ax = b\).
+            La idea central es descomponer la matriz \(A\) en el producto de dos matrices: una triangular inferior (\(L\)) y una triangular superior (\(U\)).
+        </p>
+        <p>
+            El "corazón" del método es una forma elegante de ver la <strong>Eliminación Gaussiana</strong>. El proceso de escalonar una matriz (convertirla en triangular superior) es, en esencia, encontrar la matriz \(U\). La matriz \(L\), por su parte, es una forma inteligente de "almacenar" todos los multiplicadores que usamos en la eliminación para anular los coeficientes.
+        </p>
+        
+        <h4>¿Por qué es tan importante este método?</h4>
+        <p>
+            Aquí es donde yo vi el verdadero poder. El costo computacional de encontrar \(L\) y \(U\) (el proceso de eliminación) es alto (~\(O(n^3)\)). Sin embargo, el costo de resolver un sistema triangular usando sustitución (hacia adelante o hacia atrás) es muy bajo (~\(O(n^2)\)).
+        </p>
+        <p>
+            Esto hace que la factorización \(LU\) sea increíblemente eficiente si necesitas resolver el <strong>mismo</strong> sistema \(A\) pero con <strong>diferentes</strong> vectores \(b\).
+        </p>
+        <p>
+            Por ejemplo, si necesitas resolver \(Ax = b_1\), \(Ax = b_2\) y \(Ax = b_3\):
+        </p>
+        <ol>
+            <li>Calculas \(A = LU\) <strong>una sola vez</strong> (el paso caro).</li>
+            <li>Resuelves \(Ly = b_1\) y \(Ux = y_1\) (el paso rápido).</li>
+            <li>Resuelves \(Ly = b_2\) y \(Ux = y_2\) (el paso rápido).</li>
+            <li>Resuelves \(Ly = b_3\) y \(Ux = y_3\) (el paso rápido).</li>
+        </ol>
+        <p>
+            En esta sección de mi proyecto, implementé dos variantes famosas:
+        </p>
+        <ul>
+            <li><strong>Factorización de Crout:</strong> Un algoritmo específico para calcular \(L\) y \(U\).</li>
+            <li><strong>Factorización de Cholesky:</strong> Un caso especial, mucho más rápido, que solo funciona si la matriz \(A\) es simétrica y positiva definida, lo que resulta en una descomposición \(A = L \cdot L^T\).</li>
+        </ul>
+        <blockquote>
+            Referencia: Chapra, S. C., & Canale, R. P. (2010). *Métodos Numéricos para Ingenieros* (6ª ed.). McGraw-Hill.
+        </blockquote>
+
+        <hr>
+
+        <h2>Selecciona un método:</h2>
+        
+        <a href="crout.html" class="btn-principal" target="_blank">Factorización de Crout</a>
+        <a href="cholesky.html" class="btn-principal" target="_blank">Factorización de Cholesky</a>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

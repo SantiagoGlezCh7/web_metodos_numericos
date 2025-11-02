@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de la Secante</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Método de la Secante</h1>
+        <p>
+            Similar a Newton, pero evita el cálculo de la derivada. En su lugar, aproxima la derivada usando una diferencia dividida entre dos puntos iniciales (\(p_0\) y \(p_1\)).
+        </p>
+        <h4>Fórmula de la Secante:</h4>
+        \[p_{n+1} = p_n - \frac{f(p_n)(p_n - p_{n-1})}{f(p_n) - f(p_{n-1})}\]
+        <p>Donde \(p_n\) y \(p_{n-1}\) son las dos aproximaciones anteriores y \(p_{n+1}\) es la siguiente.</p>
+        <blockquote>
+            Referencia: Burden, R. L., & Faires, J. D. (2011). *Numerical Analysis*. Brooks/Cole.
+        </blockquote>
+
+        <div class="metodo-container">
+            <h3>Problema 1: \(f(x) = x^{3} + 4x^{2} - 10\)</h3>
+            <p>Iniciar en \(p_0 = 1\) y \(p_1 = 2\) con tolerancia 0.0001</p>
+            
+            <form id="form-secante-1">
+                <label>\(p_0\): <input type="number" id="s1_p0" value="1" step="any" required></label>
+                <label>\(p_1\):<input type="number" id="s1_p1" value="2" step="any" required></label>
+                <label>Tolerancia: <input type="number" id="s1_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 1</button>
+            </form>
+            <div id="resultado-secante-1"></div>
+        </div>
+
+        <div class="metodo-container">
+            <h3>Problema 2: \(f(x) = \cos(x) - x\)</h3>
+            <p>Iniciar en \(p_0 = 0.5\) y \(p_1 = 1\) con tolerancia 0.0001</p>
+            
+            <form id="form-secante-2">
+                <label>\(p_0\): <input type="number" id="s2_p0" value="0.5" step="any" required></label>
+                <label>\(p_1\): <input type="number" id="s2_p1" value="1" step="any" required></label>
+                <label>Tolerancia: <input type="number" id="s2_tol" value="0.0001" step="any" required></label>
+                <button type="submit">Calcular Problema 2</button>
+            </form>
+            <div id="resultado-secante-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>

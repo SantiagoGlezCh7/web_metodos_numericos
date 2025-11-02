@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorización de Cholesky</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <main class="container">
+        <a href="index.html" class="btn-regresar">&larr; Regresar</a>
+        
+        <h1>Factorización de Cholesky (\(A = L \cdot L^T\))</h1>
+        
+        <p>
+            El método de Cholesky es mi favorito por su elegancia y eficiencia. Es un algoritmo de factorización directa, pero con dos requisitos muy estrictos: la matriz \(A\) <strong>debe ser simétrica</strong> (es decir, \(A = A^T\)) y <strong>positiva definida</strong>.
+        </p>
+        <p>
+            Si la matriz cumple esto, Cholesky la descompone en el producto de una matriz triangular inferior \(L\) y su propia transpuesta, \(L^T\).
+        </p>
+        
+        <h4>¿Por qué es tan especial?</h4>
+        <p>
+            Al aprovechar la simetría, Cholesky realiza aproximadamente la <strong>mitad de operaciones</strong> que la factorización \(LU\) de Crout. Esto lo hace increíblemente rápido para sistemas grandes.
+        </p>
+        <p>
+            El requisito de "positiva definida" (que, en términos simples, significa que todos sus valores propios son positivos) es crucial. El algoritmo para encontrar \(L\) implica calcular raíces cuadradas. Si la matriz no es positiva definida, acabaríamos intentando sacar la raíz cuadrada de un número negativo, y el método fallaría.
+        </p>
+        
+        <h4>¿Cómo funciona mi código?</h4>
+        <p>
+            Mi script implementa las fórmulas directas para cada elemento de \(L\):
+        </p>
+        <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+            \[L_{jj} = \sqrt{a_{jj} - \sum_{k=1}^{j-1} L_{jk}^2}\]
+            \[L_{ij} = \frac{1}{L_{jj}} \left( a_{ij} - \sum_{k=1}^{j-1} L_{ik}L_{jk} \right) \quad (\text{para } i > j) \]
+        </p>
+        <p>
+            Como puedes ver, si en algún momento el término dentro de la raíz cuadrada (\(L_{jj}\)) es negativo, el método se detiene.
+        </p>
+        <p>
+            Una vez que el código encuentra \(L\) (y por lo tanto \(L^T\)), resuelve \(Ax=b\) en dos pasos:
+        </p>
+        <ol>
+            <li><strong>Sustitución hacia adelante:</strong> Resuelve \(Ly = b\) para \(y\).</li>
+            <li><strong>Sustitución hacia atrás:</strong> Resuelve \(L^T x = y\) para la solución final \(x\).</li>
+        </ol>
+        <blockquote>
+            Referencia: Kincaid, D., & Cheney, W. (2002). *Numerical Analysis: Mathematics of Scientific Computing*. Brooks/Cole.
+        </blockquote>
+
+        <div class="metodo-container">
+            <h3>Problema 1: Sistema 3x3 (Simétrico)</h3>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ \left[ \begin{array}{ccc|c}
+                     4 & 2 & 2 & 8 \\
+                     2 & 10 & 4 & 16 \\
+                     2 & 4 & 3 & 9
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-cholesky-1">
+                <button type="submit">Resolver Problema 1</button>
+            </form>
+            <div id="resultado-cholesky-1"></div>
+        </div>
+        
+        <div class="metodo-container">
+            <h3>Problema 2: Sistema 3x3 (Simétrico)</h3>
+            <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
+                \[ \left[ \begin{array}{ccc|c}
+                     9 & 3 & 6 & 33 \\
+                     3 & 5 & 4 & 25 \\
+                     6 & 4 & 14 & 56
+                   \end{array} \right]
+                \]
+            </p>
+            <form id="form-cholesky-2">
+                <button type="submit">Resolver Problema 2</button>
+            </form>
+            <div id="resultado-cholesky-2"></div>
+        </div>
+
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-text">
+            <p>Derechos Reservados © UNAM 2025</p>
+            <p>Hecho por: Santiago González Chávez</p>
+        </div>
+        
+        <div class="footer-buttons">
+            <button id="theme-toggle" title="Cambiar tema">🌙</button>
+            <button id="sound-toggle" title="Reproducir sonido">🔊</button>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/calculos.js"></script>
+</body>
+</html>
