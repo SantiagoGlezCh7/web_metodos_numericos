@@ -5,14 +5,15 @@
 Este es mi proyecto final para la materia de Métodos Numéricos 1. En lugar de solo entregar un trabajo escrito, decidí construir una **aplicación web interactiva, moderna y funcional** que no solo resuelve los problemas, sino que también sirve como una herramienta de estudio para cualquiera que quiera visualizar estos conceptos en acción.
 
 **[¡Ver el sitio en vivo!]( https://santiagoglezch7.github.io/web_metodos_numericos/   )** 🚀
-*(Recuerda cambiar `TU-USUARIO` por tu nombre de usuario de GitHub)*
+
 
 ---
 
-### 📸 Vistazo al Proyecto
+### 📸 Vistazo del Proyecto
 
-*(Aquí puedes insertar una captura de pantalla de tu proyecto una vez esté en línea)*
-`![Vistazo del Proyecto](URL_DE_LA_IMAGEN.png)`
+Aquí incluyo una captura representativa del sitio para que puedas ver la apariencia y navegación.
+
+![Vistazo del Proyecto](img/vistazo.png)
 
 ---
 
@@ -103,26 +104,43 @@ Organización clara y legible del repositorio. Los nombres indican la función d
         - `potencia-inversa.html`
 ---
 
-## 🚀 Cómo Correrlo Localmente
+## 🚀 Cómo correr el proyecto localmente
 
-Si quieres explorar el código o hacer tus propias modificaciones, es muy fácil:
+A continuación detallo los pasos que uso para ejecutar el sitio en mi máquina de desarrollo. El contenido listo para servir está dentro de la carpeta `programa` del repositorio.
 
-1.  **Clona el repositorio:**
+1. **Clona el repositorio**
+
     ```bash
-    git clone [https://github.com/SantiagoGlezCh7/web_metodos_numericos.git](https://github.com/SantiagoGlezCh7/web_metodos_numericos.git)
+    git clone https://github.com/SantiagoGlezCh7/web_metodos_numericos.git
     ```
-2.  **Navega a la carpeta:**
+
+2. **Entra en la carpeta del sitio**
+
     ```bash
-    cd programa
+    cd web_metodos_numericos/programa
     ```
-3.  **Ábrelo con VS Code:**
+
+3. **Abre el proyecto en VS Code** (opcional, recomendado)
+
     ```bash
     code .
     ```
-4.  **Ejecútalo con "Live Server":**
-    * En VS Code, ve al explorador de archivos.
-    * Haz clic derecho en el archivo `index.html` (el de la raíz).
-    * Selecciona **"Open with Live Server"**.
+
+4. **Sirve el sitio**
+
+    - Opción A — Live Server (recomendada):
+      * Instala la extensión *Live Server* en VS Code.
+      * Haz clic derecho sobre `index.html` (dentro de la carpeta `programa`) y selecciona *Open with Live Server*.
+
+    - Opción B — Servidor simple con Python (funciona sin extensiones):
+
+    ```powershell
+    # Desde la carpeta 'programa'
+    python -m http.server 5500
+    # Abrir en el navegador:
+    http://localhost:5500/index.html
+    ```
+
 
 ¡Gracias por visitar mi proyecto!
 
