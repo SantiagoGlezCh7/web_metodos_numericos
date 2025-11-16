@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const soundToggle = document.getElementById('sound-toggle');
     
     // Esta línea comprueba si la URL es la página raíz ("/") o "index.html"
-    if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
+    if (window.location.pathname.endsWith('/web_metodos_numericos/') || window.location.pathname.endsWith('/index.html')) {
         
         // SÍ, ESTAMOS EN LA PORTADA: Activa el botón de sonido
         
         // Creamos el audio
-        const pageSound = new Audio('/audio/intro-sound.mp3');
+        const pageSound = new Audio('audio/intro-sound.mp3');
         pageSound.loop = true;
         let isPlaying = false;
 

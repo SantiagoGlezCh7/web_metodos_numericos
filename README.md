@@ -4,7 +4,7 @@
 
 Este es mi proyecto final para la materia de Métodos Numéricos 1. En lugar de solo entregar un trabajo escrito, decidí construir una **aplicación web interactiva, moderna y funcional** que no solo resuelve los problemas, sino que también sirve como una herramienta de estudio para cualquiera que quiera visualizar estos conceptos en acción.
 
-**[¡Ver el sitio en vivo!](https://TU-USUARIO.github.io/metodos-numericos-web/)** 🚀
+**[¡Ver el sitio en vivo!]( https://santiagoglezch7.github.io/web_metodos_numericos/   )** 🚀
 *(Recuerda cambiar `TU-USUARIO` por tu nombre de usuario de GitHub)*
 
 ---
@@ -109,11 +109,11 @@ Si quieres explorar el código o hacer tus propias modificaciones, es muy fácil
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone [https://github.com/TU-USUARIO/metodos-numericos-web.git](https://github.com/TU-USUARIO/metodos-numericos-web.git)
+    git clone [https://github.com/SantiagoGlezCh7/web_metodos_numericos.git](https://github.com/SantiagoGlezCh7/web_metodos_numericos.git)
     ```
 2.  **Navega a la carpeta:**
     ```bash
-    cd metodos-numericos-web
+    cd programa
     ```
 3.  **Ábrelo con VS Code:**
     ```bash
