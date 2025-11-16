@@ -60,35 +60,52 @@ document.addEventListener('DOMContentLoaded', () => {
    // --- LÓGICA DE SONIDO (CONDICIONAL) ---
     
     const soundToggle = document.getElementById('sound-toggle');
-    
-    // Esta línea comprueba si la URL es la página raíz ("/") o "index.html"
-    if (window.location.pathname.endsWith('/web_metodos_numericos/') || window.location.pathname.endsWith('/index.html')) {
-        
-        // SÍ, ESTAMOS EN LA PORTADA: Activa el botón de sonido
-        
-        // Creamos el audio
-        const pageSound = new Audio('audio/intro-sound.mp3');
-        pageSound.loop = true;
-        let isPlaying = false;
 
-        // Le damos la funcionalidad al botón
-        soundToggle.addEventListener('click', () => {
-            if (isPlaying) {
-                pageSound.pause();
-                soundToggle.textContent = '🔊';
-            } else {
-                pageSound.play();
-                soundToggle.textContent = '🔇';
-            }
-            isPlaying = !isPlaying;
-        });
+function audioPath(filename) {
+  // Detectar entorno local
+  const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
+  if (isLocal) {
+    // servidor local: ruta relativa (servidor sirve desde la raíz del proyecto)
+    return `/audio/${filename}`;
+  } else {
+    // GitHub Pages (ajusta '/web_metodos_numericos/' si tu repo usa otro nombre)
+    return `/web_metodos_numericos/audio/${filename}`;
+  }
+}
 
-    } else {
-        
-        // NO, ESTAMOS EN OTRA PÁGINA: Oculta el botón de sonido
-        if (soundToggle) {
-            soundToggle.style.display = 'none';
+if (soundToggle) {
+  // Ajusta las comprobaciones de pathname a tus URLs reales
+  const onIndex = window.location.pathname.endsWith('/web_metodos_numericos/') ||
+                  window.location.pathname.endsWith('/index.html') ||
+                  window.location.pathname === '/';
+  if (onIndex) {
+    const pageSound = new Audio(audioPath('intro-sound.mp3'));
+    pageSound.loop = true;
+    let isPlaying = false;
+
+    soundToggle.addEventListener('click', async () => {
+      try {
+        if (isPlaying) {
+          pageSound.pause();
+          soundToggle.textContent = '🔊';
+        } else {
+          await pageSound.play();
+          soundToggle.textContent = '🔇';
         }
-    }
+        isPlaying = !isPlaying;
+      } catch (e) {
+        console.warn('No se pudo reproducir el audio:', e);
+        // mostrar botón para debug (opcional)
+        soundToggle.textContent = '🔊';
+      }
+    });
+
+    // Opcional: mostrar ruta en consola para depuración
+    console.log('Audio URL:', pageSound.src);
+  } else {
+    soundToggle.style.display = 'none';
+  }
+}
+
 
 });
